@@ -1,3 +1,13 @@
+@keyframes slideIn {
+  from {
+    transform: translateY(90%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .match {
     max-width: 800px;
     margin: 0 auto;
@@ -5,6 +15,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: #3F3E3D;
+    animation: slideIn 0.3s ease; 
   }
 
   .stat{

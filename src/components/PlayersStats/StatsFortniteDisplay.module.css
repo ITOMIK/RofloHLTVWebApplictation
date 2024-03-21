@@ -1,0 +1,56 @@
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.summary {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    margin-top: -30px;
+    animation: slideIn 0.3s ease; 
+  }
+
+  .tournament {
+    display: flex;
+    background-color: #3F3E3D;
+    padding: 10px;
+  
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .logo {
+    width: 20%;
+    height: auto;
+    margin-right: 10px;
+    border-radius: 5px;
+  }
+  
+  .info {
+    flex-grow: 1;
+  }
+  
+  .tournament h3 {
+    margin-top: 0;
+  }
+  
+  .tournament p {
+    margin-bottom: 5px;
+  }
+  
+  .tournament a {
+    text-decoration: none;
+    color: #92bbff; /* Цвет ссылок */
+  }
+  
+  .tournament a:hover {
+    font-weight: bold;
+  }

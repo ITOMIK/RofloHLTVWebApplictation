@@ -3,7 +3,7 @@ import styles from './PlayerHeader.module.css';
 import getCountryFlagUrl from '../../data/getCountryFlag';
 
 function PlayerHeader({user,setSelectedGame,selectedGame}) {
-    let avatar = "/defaultAvatar.jpg";
+    const avatar = '/defaultAvatar.jpg';
     return(
 <div className={styles.header}>
                 <img src={user.avatar?user.avatar :avatar} alt={user.name} className={styles.avatar} />

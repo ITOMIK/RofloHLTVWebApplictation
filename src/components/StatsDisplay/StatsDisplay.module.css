@@ -1,5 +1,16 @@
+@keyframes slideIn {
+  from {
+    transform: translateY(90%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
 .display {
     margin-top: 20px;
+    animation: slideIn 0.3s ease; 
   }
   .container {
     display: flex;
