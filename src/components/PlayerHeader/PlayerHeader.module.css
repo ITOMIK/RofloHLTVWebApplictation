@@ -1,0 +1,78 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: -20px;
+  }
+  
+  .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-bottom: 20px;
+  
+  }
+
+  .info {
+    color: #ffffff;
+  }
+
+  .name {
+    display: flex;
+    align-items: center;
+  }
+  
+  .name h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+  
+  .flag {
+    width: 20px; /* Размер флага */
+    height: 15px; /* Размер флага */
+    margin-left: 5px; /* Отступ слева */
+    margin-bottom: -10px;
+  }
+
+  .links ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .links ul li {
+    margin-bottom: 5px;
+  }
+  
+  .links ul li a {
+    text-decoration: none;
+    color: #007bff; /* Цвет ссылок */
+  }
+  
+  .links ul li a:hover {
+    font-weight: bold;
+  }
+  .links {
+    margin-top: 10px;
+  }
+
+  .menu ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+  }
+  
+  .menu ul li {
+    margin-right: 20px;
+  }
+  
+  .menu ul li button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  .menu ul li.selected button {
+    font-weight: bold;
+  }
+

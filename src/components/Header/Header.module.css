@@ -1,0 +1,43 @@
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    margin-bottom: 30px;
+  }
+  
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .links li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  .links li:last-child {
+    margin-right: 0;
+  }
+  
+  .content a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .content a:hover {
+    font-weight: bold;
+  }

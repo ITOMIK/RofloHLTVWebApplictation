@@ -1,0 +1,39 @@
+.result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+  }
+  
+  .winner img,
+  .looser img {
+    width: 100px;
+    height: auto;
+    margin: 0 10px;
+  }
+  
+  .score {
+    font-size: 90px;
+    font-weight: bold;
+  }
+
+  .maps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .map {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+    margin-bottom: 20px;
+  }
+  
+  .map h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }

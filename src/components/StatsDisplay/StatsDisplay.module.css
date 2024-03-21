@@ -1,0 +1,35 @@
+.display {
+    margin-top: 20px;
+  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: bold;
+  }
+  .indicator {
+    margin-left: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #333;
+    text-align: right;
+    font-weight: bold;
+  }
+  
+  .indicator.red {
+    background-color: #ff6666;
+  }
+  
+  .indicator.yellow {
+    background-color: #ffff66;
+  }
+  
+  .indicator.green {
+    background-color: #66ff66;
+  }
+  .stat {
+    margin-top: 15px;
+    min-width: 160px;
+    flex: 1 1 calc(33.33% - 10px); /* 3 статистики на одной строке */
+    flex-direction: row-reverse;
+    margin-right: 10px;
+  }

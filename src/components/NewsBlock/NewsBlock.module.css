@@ -1,0 +1,11 @@
+.block{
+    float: right;
+    padding: 10px;
+    background-color: #3F3E3D;
+    border-radius: 5px;
+    margin: 20px;
+}
+.block{
+    float: left;
+    width: 80%;
+  }

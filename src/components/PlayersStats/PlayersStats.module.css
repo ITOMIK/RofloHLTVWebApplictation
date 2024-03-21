@@ -1,0 +1,50 @@
+.stats {
+    display: grid;
+  }
+
+  .player {
+    margin-bottom: 10px;
+    max-width: 65%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #1f1f1f;
+  }
+  .player a{
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .player h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .player ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .player ul li {
+    margin-bottom: 5px;
+  }
+
+  .header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .flag{
+    width: 20px; /* Размер флага */
+    height: 15px; /* Размер флага */
+    margin-left: 5px; /* Отступ слева */
+    margin-bottom: 10px;
+  }
+
+  .logo{
+    width: 30%;
+    height: auto;
+    margin-right: 5px;
+  }
