@@ -1729,7 +1729,6 @@ let data={
     assists: 15,
     deads: 79,
     ADR: 68,
-    cKills: 47,
     maps: 3,
     rounds: 97,
     hs: 42,
