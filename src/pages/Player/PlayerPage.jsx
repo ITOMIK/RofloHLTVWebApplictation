@@ -1,4 +1,4 @@
-import React, { useState,useEffect  } from 'react';
+import React, { useState,useEffect,useMemo  } from 'react';
 import { useParams,Link,useNavigate  } from 'react-router-dom';
 import styles from './PlayerPage.module.css';
 import PlayerHeader from '../../components/PlayerHeader/PlayerHeader';
@@ -28,30 +28,29 @@ function PlayerPage() {
 
     const [isChanged, setIsChanged] = useState(false);
 
+    const updateKillsWithDeathMemoized = useMemo(() => {
+        return (obj) => {
+            if (!obj || isChanged) return null;
+            else {
+                console.log(obj.kills);
+                obj.kills = (obj.kills / obj.maps).toFixed(1);
+                obj.deads = (obj.deads / obj.maps).toFixed(1);
+                obj.assists = (obj.assists / obj.maps).toFixed(1);
+                obj.fk = (obj.fk / obj.maps).toFixed(1);
+                obj.fd = (obj.fd / obj.maps).toFixed(1);
+                setIsChanged(true);
+            }
+        };
+    }, [isChanged]);
+
     useEffect(() => {
         if (!isLoading) {
-            updateKillsWithDeath(playerCsgo);
-            updateKillsWithDeath(playerVal);
+            updateKillsWithDeathMemoized(playerCsgo);
+            updateKillsWithDeathMemoized(playerVal);
         }
-    }, [isLoading]);
+    }, [isLoading, playerCsgo, playerVal, updateKillsWithDeathMemoized]);
 
-    function updateKillsWithDeath(obj) {
-        if(!obj || isChanged) return null
-        else{
-            console.log(obj.kills);
-            obj.kills = obj.kills/obj.maps;
-            obj.kills = obj.kills.toFixed(1)
-            obj.deads = obj.deads/obj.maps;
-            obj.deads = obj.deads.toFixed(1)
-            obj.assists = obj.assists/obj.maps;
-            obj.assists = obj.assists.toFixed(1)
-            obj.fk = obj.fk/obj.maps;
-            obj.fk = obj.fk.toFixed(1)
-            obj.fd = obj.fd/obj.maps;
-            obj.fd = obj.fd.toFixed(1)
-            setIsChanged(true);
-        }
-    }
+    
 
    useEffect(()=>{
     if(playerId){

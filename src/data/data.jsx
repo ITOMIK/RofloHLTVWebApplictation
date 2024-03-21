@@ -1254,7 +1254,7 @@ let data={
             games: [
                 "Fortnite"
             ],
-            country: "Ukraine",
+            country: "Belarus",
             realname: "",
             links: {
                 "fortniteTracker": "https://fortnitetracker.com/profile/all/216%20only/events?id=6cfd1d00-41b1-432f-bfc4-1e1b4191ae44"
@@ -1267,7 +1267,7 @@ let data={
             games: [
                 "Fortnite"
             ],
-            country: "Ukraine",
+            country: "Belarus",
             realname: "",
             links: {
                 "fortniteTracker": "https://fortnitetracker.com/profile/all/тімр0рчік/events?id=84e6273a-1324-4654-add5-5a29e7280ac6"
@@ -1473,7 +1473,7 @@ let data={
             id: 3,
             name: "MAPAFOH ETALOHHO",
             kills: 63,
-            assist: 11,
+            assists: 11,
             deads: 48,
             ADR: 88,
             maps: 3,
