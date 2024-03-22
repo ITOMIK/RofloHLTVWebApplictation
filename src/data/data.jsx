@@ -181,7 +181,7 @@ let data={
     csgoEvents:[
         {
             id: 0,
-            "name": "SexDevelopers vs 2 SAPOGA",
+            "name": "2 SAPOGA vs SexDevelopers",
             "type": "ShowMatch",
             "date": "27-07-2023",
             "data": [
@@ -1511,7 +1511,7 @@ let data={
         {
             id: 8,
             name: "Sveta Lemeshko",
-            kill: 51,
+            kills: 51,
             assists: 19,
             deads: 60,
             ADR: 85,

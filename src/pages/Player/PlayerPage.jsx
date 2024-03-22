@@ -28,27 +28,21 @@ function PlayerPage() {
 
     const [isChanged, setIsChanged] = useState(false);
 
-    const updateKillsWithDeathMemoized = useMemo(() => {
-        return (obj) => {
-            if (!obj || isChanged) return null;
-            else {
-                console.log(obj.kills);
-                obj.kills = (obj.kills / obj.maps).toFixed(1);
-                obj.deads = (obj.deads / obj.maps).toFixed(1);
-                obj.assists = (obj.assists / obj.maps).toFixed(1);
-                obj.fk = (obj.fk / obj.maps).toFixed(1);
-                obj.fd = (obj.fd / obj.maps).toFixed(1);
-                setIsChanged(true);
-            }
-        };
-    }, [isChanged]);
 
-    useEffect(() => {
-        if (!isLoading) {
-            updateKillsWithDeathMemoized(playerCsgo);
-            updateKillsWithDeathMemoized(playerVal);
-        }
-    }, [isLoading, playerCsgo, playerVal, updateKillsWithDeathMemoized]);
+    const memoizedPlayerVal = useMemo(() => updateData(playerVal), [playerVal]);
+    const memoizedPlayerCsgo = useMemo(() => updateData(playerCsgo), [playerCsgo]);
+
+    function updateData(obj) {
+        if (!obj) return {};
+        return {
+            ...obj,
+            kills: (obj.kills / obj.maps).toFixed(1),
+            deads: (obj.deads / obj.maps).toFixed(1),
+            assists: (obj.assists / obj.maps).toFixed(1),
+            fk: (obj.fk / obj.maps).toFixed(1),
+            fd: (obj.fd / obj.maps).toFixed(1)
+        };
+    }
 
     
 
@@ -79,8 +73,8 @@ function PlayerPage() {
         <div className={styles.page}>
             <PlayerHeader user={user} setSelectedGame={setSelectedGame} selectedGame={selectedGame}/>
             <Separator />
-            {(selectedGame=="Valorant" && playerVal!=null)?<StatsDisplay discipline={selectedGame} playerData={playerVal}/>:null}
-            {selectedGame=="CS:GO"&& playerCsgo!=null?<StatsDisplay discipline={selectedGame} playerData={playerCsgo}/>:null}
+            {(selectedGame=="Valorant" && playerVal!=null)?<StatsDisplay discipline={selectedGame} playerData={memoizedPlayerVal}/>:null}
+            {selectedGame=="CS:GO"&& playerCsgo!=null?<StatsDisplay discipline={selectedGame} playerData={memoizedPlayerCsgo}/>:null}
             {selectedGame=='Fortnite' && playerFortnite!=null?<StatsFortniteDisplay events={data.fortniteEvents} playerData={playerFortnite}/>: null}
         </div>
     );
