@@ -21,8 +21,8 @@ function StatsFortniteDisplay({events, playerData}) {
             <p>Место: #{event.place}</p>
             <p>Количество убийств: {event.kills}</p>
             <p>Среднее место: {event.avgPlace}</p>
-            <p>Команда: {event.members.map((player, index) => (
-                <Link  to={`/players/${player.id}`}>{player.name} </Link>
+            <p>Команда: {event.members.map((player) => (
+                <Link key={player.id}  to={`/players/${player.id}`}>{player.name} </Link>
             ))}</p>
         </div>
     </div>
