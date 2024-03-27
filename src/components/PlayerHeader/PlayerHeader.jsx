@@ -18,15 +18,9 @@ const  PlayerHeader=observer(()=> {
     );
     useEffect(() => {
         if (user && user.id === PlayerInfo.id) {
-            setSelectedGameLocal(user?.games[0]);
+            selectedGame.setSelectedGame(user?.games[0]);
         }
     }, [user]);
-
-    useEffect(() => {
-        if (selectedGameLocal) {
-            selectedGame.setSelectedGame(selectedGameLocal);
-        }
-    }, [selectedGameLocal]);
 
     const avatar = '/defaultAvatar.jpg';
     return(
