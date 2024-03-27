@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import service from '../../services/main.service.js';
 import PlayerInfo from '../../store/PlayerInfo.js';
 
-function StatsFortniteDisplay({id}) {
+function StatsFortniteDisplay() {
     const { isLoading: isLoadingFortnite, data: playerData } = useQuery({
         queryKey: ['fortniteEventsStats'],
         queryFn: () => service.getAll(),

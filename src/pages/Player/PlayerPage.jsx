@@ -13,7 +13,6 @@ import { observer } from 'mobx-react-lite';
 const PlayerPage = observer(()=> {
 
     const { playerId } = useParams();
-
     useEffect(() => {
         PlayerInfo.setId(+playerId);
     }, [playerId]);

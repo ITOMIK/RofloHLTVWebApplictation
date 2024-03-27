@@ -5,11 +5,10 @@ import mainService from '../../services/main.service';
 import { useQuery } from '@tanstack/react-query';
 import PlayerInfo from '../../store/PlayerInfo';
 import selectedGame from '../../store/selectedGame';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
 
-const  PlayerHeader=observer(()=> {
-    const [selectedGameLocal, setSelectedGameLocal] = useState(null);
+const  PlayerHeader=()=> {
     const { isLoading, data: user } = useQuery({
         queryKey: ['playerInfo'],
         queryFn: () => mainService.getAll(),
@@ -18,10 +17,11 @@ const  PlayerHeader=observer(()=> {
     );
     useEffect(() => {
         if (user && user.id === PlayerInfo.id) {
+            console.log(user,user.id,PlayerInfo.id);
             selectedGame.setSelectedGame(user?.games[0]);
         }
     }, [user]);
-
+    
     const avatar = '/defaultAvatar.jpg';
     return(
 <div className={styles.header}>
@@ -57,7 +57,7 @@ const  PlayerHeader=observer(()=> {
                 }
             </div>
             );
-})
+}
 
 export default PlayerHeader;
 
