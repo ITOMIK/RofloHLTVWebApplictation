@@ -1,4 +1,5 @@
 import axios from "axios";
+import PlayerInfo from "../store/PlayerInfo";
 
 class Service {
     async getAll(){

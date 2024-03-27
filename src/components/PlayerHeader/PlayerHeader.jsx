@@ -5,7 +5,7 @@ import mainService from '../../services/main.service';
 import { useQuery } from '@tanstack/react-query';
 import PlayerInfo from '../../store/PlayerInfo';
 import selectedGame from '../../store/selectedGame';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const  PlayerHeader=()=> {
     const { isLoading, data: user } = useQuery({
@@ -14,12 +14,15 @@ const  PlayerHeader=()=> {
         select: ({data}) => data[0].players.find(p=>p.id===PlayerInfo.id),
     },
     );
+
+    const [userLoaded, setUserLoaded] = useState(false);
+
     useEffect(() => {
-        if (user && user.id === PlayerInfo.id) {
-            console.log(user,user.id,PlayerInfo.id);
+        if (user && user.id === PlayerInfo.id && !userLoaded) { 
             selectedGame.setSelectedGame(user?.games[0]);
+            setUserLoaded(true); 
         }
-    }, [user]);
+    }, [user, userLoaded]);
     
     const avatar = '/defaultAvatar.jpg';
     return(

@@ -6,13 +6,13 @@ import service from '../../services/main.service.js';
 import PlayerInfo from '../../store/PlayerInfo.js';
 
 function StatsFortniteDisplay() {
-    const { isLoading: isLoadingFortnite, data: playerData } = useQuery({
+    const { isLoading: isLoadingFortnite, data: playerData, status: _status } = useQuery({
         queryKey: ['fortniteEventsStats'],
         queryFn: () => service.getAll(),
         select: ({data}) => data[0].fortnitePlayers.find(p=>p.id===PlayerInfo.id),
     },
     );
-    const { isLoading: isLoadingFortniteEvents, data: events } = useQuery({
+    const { isLoading: isLoadingFortniteEvents, data: events, status } = useQuery({
         queryKey: ['fortnitePlayerStats'],
         queryFn: () => service.getAll(),
         select: ({data}) => data[0].fortniteEvents,
@@ -20,7 +20,7 @@ function StatsFortniteDisplay() {
     );
     return(
 <div className={styles.summary}>
-    {isLoadingFortnite || isLoadingFortniteEvents? <div>Загрузка...</div>:
+    {isLoadingFortnite || isLoadingFortniteEvents || events==null || playerData==null? <div>Загрузка...</div>:
     <>
 <h2>Power Points: {playerData.pr}</h2>
 <Separator />
