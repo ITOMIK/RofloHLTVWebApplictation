@@ -4,41 +4,29 @@ import data from '../../data/data';
 import MatchResult from '../../components/MatchResult/MatchResult'
 import styles from './Event.module.css';
 import PlayersStats from '../../components/PlayersStats/PlayersStats';
+import EventInfo from '../../store/EventInfo';
+import { useQuery } from '@tanstack/react-query';
+import mainService from '../../services/main.service';
 
-function CsgoPage() {
+function EventPage() {
 
 
     const { matchId, discipline } = useParams();
 
-    const navigate = useNavigate();
-
-    const [isLoading, setIsLoading] = React.useState(true);
-
-    const [event, setEvent] = React.useState({});
-
-
-    useEffect(() => {
-        if (matchId && discipline) {
-            setIsLoading(true);
-            let e = null;
-            if(discipline==="Csgo"){
-            e = data.csgoEvents.find(e=> e.id===+matchId);
-            }
-            else{
-            e = data.valorantEvents.find(e=> e.id===+matchId);
-            }
-            console.log(e);
-            setEvent(e? e:{});
-            setIsLoading(false);
-        }
-        
-    }, [matchId]);
-
-
-
-
-
-
+    const { isLoading, data: event } = useQuery({
+        queryKey: [`${matchId}Event${discipline}`],
+        queryFn: () => mainService.getAll(),
+        select: ({data}) => {
+            if(discipline==="Valorant") return data[0].valorantEvents.find(m=> m.id= matchId);
+            if(discipline==="Csgo") return data[0].csgoEvents.find(m=> m.id= matchId);
+        },
+    },
+    );
+    useEffect(()=>{
+       if(event){
+        EventInfo.setData(event,discipline);
+    }
+    },[event])
     if(isLoading){
         return (
             <div>Загрузка...</div>
@@ -49,10 +37,10 @@ function CsgoPage() {
         <div className={styles.match}>
                 <h1 align="center">{event.name}</h1>
                 <h3 align="center">{event.date}</h3>
-                    <MatchResult event ={event} />
+                    <MatchResult  />
                     <div className={styles.stat}>
-                        <PlayersStats TeamFlag={true} users={data.players} event={event} discipline={discipline}/>
-                        <PlayersStats TeamFlag={false} users={data.players} event={event} discipline={discipline}/>
+                        <PlayersStats TeamFlag={true} />
+                        <PlayersStats TeamFlag={false} />
                     </div>
                 
         </div>
@@ -62,4 +50,4 @@ function CsgoPage() {
 
 
 
-export default CsgoPage;
+export default EventPage;

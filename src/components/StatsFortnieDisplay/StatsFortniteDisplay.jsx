@@ -1,10 +1,27 @@
 import styles from './StatsFortniteDisplay.module.css';
 import Separator from '../Separator/Separator';
-import { Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import service from '../../services/main.service.js';
+import PlayerInfo from '../../store/PlayerInfo.js';
 
-function StatsFortniteDisplay({events, playerData}) {
+function StatsFortniteDisplay({id}) {
+    const { isLoading: isLoadingFortnite, data: playerData } = useQuery({
+        queryKey: ['fortniteEventsStats'],
+        queryFn: () => service.getAll(),
+        select: ({data}) => data[0].fortnitePlayers.find(p=>p.id===PlayerInfo.id),
+    },
+    );
+    const { isLoading: isLoadingFortniteEvents, data: events } = useQuery({
+        queryKey: ['fortnitePlayerStats'],
+        queryFn: () => service.getAll(),
+        select: ({data}) => data[0].fortniteEvents,
+    },
+    );
     return(
 <div className={styles.summary}>
+    {isLoadingFortnite || isLoadingFortniteEvents? <div>Загрузка...</div>:
+    <>
 <h2>Power Points: {playerData.pr}</h2>
 <Separator />
 <h2>Fortnite Events</h2>
@@ -27,6 +44,7 @@ function StatsFortniteDisplay({events, playerData}) {
         </div>
     </div>
 ))}
+</>}
 </div>
     );
 }

@@ -1,28 +1,37 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from './NewsBlock.module.css';
 import Sep from '../Separator/Separator';
-import data from '../../data/data';
+import { useQuery } from '@tanstack/react-query';
+import service from '../../services/main.service';
+
 const NewsBlock = () => {
-    const [news,setNews] = useState([]);
 
-    useEffect(() => {
-        setNews(data.news);
-    }, [news]);
+    const { isLoading, data: news } = useQuery({
+        queryKey: ['news'],
+        queryFn: () => service.getAll(),
+        select: ({data}) => data[0].news,
+    },
+    );
 
-    const memoizedNews = useMemo(() => news, [news]);
 
-       return (
+    if (isLoading ) {
+        return (
+            <div>Загрузка</div>
+        )
+    }
+
+
+    return (
         <div className={styles.block}>
             <h2>Последние Новости</h2>
             <Sep />
-            {memoizedNews.map(n => (
-                <div key={n}>
+            {isLoading? <div>Загрузка...</div>:
+            news.map((n, index) => (
+                <div key={index}>
                     <p>{n}</p>
                     <Sep />
                 </div>
-
-
-          ))}
+            ))}
         </div>
     );
 }

@@ -2,14 +2,29 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Event.module.css';
 import Separator from '../Separator/Separator';
+import mainService from '../../services/main.service';
+import { useQuery } from '@tanstack/react-query';
 
-const EventsBlock = ({ discipline, events }) => {
+const EventsBlock = ({ discipline }) => {
 
+
+    const { isLoading, data: events } = useQuery({
+        queryKey: [`${discipline}Players`],
+        queryFn: () => mainService.getAll(),
+        select: ({ data }) => {
+            if (discipline === "Fortnite") return data[0].fortniteEvents;
+            if (discipline === "Csgo") return data[0].csgoEvents;
+            if (discipline === "Valorant") return data[0].valorantEvents;
+            return [];
+        },
+    });
     return (
+        
         <div className={styles.block}>
             <h2>{discipline.toUpperCase()} Events</h2>
             <Separator />
-            {events.map((event, index) => (
+            {isLoading? <div>Загрузка...</div>:
+            events.map((event, index) => (
                 <div key={index} style={{marginTop: "20px"}} className={styles.Event}>
                     <Link to={`/Event/${discipline}/${event.id}`}>
                     <div className={styles.EventName}>

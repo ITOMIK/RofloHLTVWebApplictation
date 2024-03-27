@@ -12,7 +12,7 @@ const CsgoPage = () => {
             <NewsBlock />
             <div className={styles.sidebar}>
                 <EventsBlock  events={data.csgoEvents} discipline={"Csgo"}/>
-                <BestPlayers stats={data.csgoPlayers} discipline={"Csgo"} users={data.players}/>
+                <BestPlayers  discipline={"Csgo"}/>
             </div>
         </div>
 

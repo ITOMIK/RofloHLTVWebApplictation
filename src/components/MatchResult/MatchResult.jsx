@@ -1,19 +1,21 @@
 import { useMemo } from "react";
 import styles from './MatchResult.module.css';
-function MatchResult({event}){
-    const _event = useMemo(()=>event,[event])
+import EventInfo from "../../store/EventInfo";
+import { observer } from "mobx-react-lite";
+const MatchResult = observer(()=>{
+    const event = EventInfo.event;
     return(
         <><div className={styles.result}>
             <div className={styles.winner}>
-                <img src={_event.itog.winnerLogo} alt={_event.itog.winner} />
-                <span className={styles.score}>{_event.itog.score}</span>
+                <img src={event?.itog.winnerLogo} alt={event?.itog.winner} />
+                <span className={styles.score}>{event?.itog.score}</span>
             </div>
             <div className={styles.looser}>
-                <img src={_event.itog.looserLogo} alt={_event.itog.looser} />
+                <img src={event?.itog.looserLogo} alt={event?.itog.looser} />
             </div>
         </div>
         <div className={styles.maps}>
-                {_event.maps.map((map, index) => (
+                {event?.maps.map((map, index) => (
                     <div key={index} className={styles.map}>
                         <h2>{map.name}</h2>
                         <p>Score:
@@ -25,6 +27,6 @@ function MatchResult({event}){
                 ))}
             </div></>
         );
-}
+})
 
 export default MatchResult;

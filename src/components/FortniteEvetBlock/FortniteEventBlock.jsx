@@ -1,14 +1,25 @@
 import React from 'react';
 import styles from './FortniteEventBlock.module.css';
 import Separator from '../Separator/Separator';
+import { useQuery } from '@tanstack/react-query';
+import mainService from '../../services/main.service';
 
-const EventsBlock = ({ events }) => {
+const EventsBlock = () => {
+
+    const { isLoading, data: events } = useQuery({
+        queryKey: [`fortnitePlayers`],
+        queryFn: () => mainService.getAll(),
+        select: ({ data }) => data[0].fortniteEvents
+            
+    });
+
     return (
         <div className={styles.block}>
             <h2>Fortnite Events</h2>
             <Separator />
             <ul>
-                {events.sort((a, b) => {
+                {isLoading? <div>Загрузка...</div>:
+                events.sort((a, b) => {
                     const dateA = new Date(a.date.split("-").reverse().join("-"));
                     const dateB = new Date(b.date.split("-").reverse().join("-"));
                     return dateB - dateA;
