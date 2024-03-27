@@ -7,8 +7,9 @@ import PlayersStats from '../../components/PlayersStats/PlayersStats';
 import EventInfo from '../../store/EventInfo';
 import { useQuery } from '@tanstack/react-query';
 import mainService from '../../services/main.service';
+import { observer } from 'mobx-react-lite';
 
-function EventPage() {
+const  EventPage=observer(() =>{
 
 
     const { matchId, discipline } = useParams();
@@ -17,13 +18,14 @@ function EventPage() {
         queryKey: [`${matchId}Event${discipline}`],
         queryFn: () => mainService.getAll(),
         select: ({data}) => {
-            if(discipline==="Valorant") return data[0].valorantEvents.find(m=> m.id= matchId);
-            if(discipline==="Csgo") return data[0].csgoEvents.find(m=> m.id= matchId);
+            if(discipline==="Valorant") return data[0].valorantEvents.find(m=> m.id== +matchId);
+            if(discipline==="Csgo") return data[0].csgoEvents.find(m=> m.id== +matchId);
         },
     },
     );
     useEffect(()=>{
        if(event){
+        console.log(event)
         EventInfo.setData(event,discipline);
     }
     },[event])
@@ -32,11 +34,12 @@ function EventPage() {
             <div>Загрузка...</div>
         );
     }
+    console.log(event)
     return (
 
         <div className={styles.match}>
-                <h1 align="center">{event.name}</h1>
-                <h3 align="center">{event.date}</h3>
+                <h1 align="center">{event?.name}</h1>
+                <h3 align="center">{event?.date}</h3>
                     <MatchResult  />
                     <div className={styles.stat}>
                         <PlayersStats TeamFlag={true} />
@@ -45,7 +48,7 @@ function EventPage() {
                 
         </div>
     );
-}
+})
 
 
 
