@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
 import styles from './NewsBlock.module.css';
 import Sep from '../Separator/Separator';
 import { useQuery } from '@tanstack/react-query';
@@ -16,7 +16,9 @@ const NewsBlock = () => {
 
     if (isLoading ) {
         return (
-            <div>Загрузка</div>
+            <div className={styles.block}>
+            <div>Загрузка...</div>
+            </div>
         )
     }
 

@@ -1,4 +1,3 @@
-import { useMemo } from "react";
 import styles from './MatchResult.module.css';
 import EventInfo from "../../store/EventInfo";
 import { observer } from "mobx-react-lite";

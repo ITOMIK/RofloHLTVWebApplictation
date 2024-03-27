@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import PlayerInfo from '../../store/PlayerInfo';
 import selectedGame from '../../store/selectedGame';
 import React, { useEffect } from 'react';
-import { observer } from 'mobx-react-lite';
 
 const  PlayerHeader=()=> {
     const { isLoading, data: user } = useQuery({

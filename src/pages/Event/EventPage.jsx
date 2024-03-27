@@ -1,6 +1,5 @@
-import React, { useState,useEffect  } from 'react';
-import { useParams,Link,useNavigate  } from 'react-router-dom';
-import data from '../../data/data';
+import React, { useEffect  } from 'react';
+import { useParams } from 'react-router-dom';
 import MatchResult from '../../components/MatchResult/MatchResult'
 import styles from './Event.module.css';
 import PlayersStats from '../../components/PlayersStats/PlayersStats';
@@ -25,16 +24,17 @@ const  EventPage=observer(() =>{
     );
     useEffect(()=>{
        if(event){
-        console.log(event)
         EventInfo.setData(event,discipline);
     }
     },[event])
+
     if(isLoading){
         return (
+            <div className={styles.match}>
             <div>Загрузка...</div>
+            </div>
         );
     }
-    console.log(event)
     return (
 
         <div className={styles.match}>
