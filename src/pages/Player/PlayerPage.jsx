@@ -5,10 +5,6 @@ import PlayerHeader from '../../components/PlayerHeader/PlayerHeader';
 import Separator from '../../components/Separator/Separator';
 import StatsDisplay from '../../components/StatsDisplay/StatsDisplay';
 import StatsFortniteDisplay from '../../components/StatsFortnieDisplay/StatsFortniteDisplay';
-//import PlayerInfo from '../../store/PlayerInfo';
-//import selectedGame from '../../store/selectedGame';
-//import { observer } from 'mobx-react-lite';
-
 
 const PlayerPage = ()=> {
 
