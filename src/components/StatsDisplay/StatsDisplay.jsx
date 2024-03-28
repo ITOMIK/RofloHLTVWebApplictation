@@ -6,8 +6,8 @@ import getStatValorant from '../../data/getStatValorant.jsx';
 import getStatCsgo from '../../data/getStatCsgo.jsx';
 import { useQuery } from '@tanstack/react-query';
 import service from '../../services/main.service.js';
-import PlayerInfo from '../../store/PlayerInfo.js';
-import selectedGame from '../../store/selectedGame.js';
+//import PlayerInfo from '../../store/PlayerInfo.js';
+//import selectedGame from '../../store/selectedGame.js';
 
 function updateData(obj) {
     if (!obj) return {};
@@ -21,23 +21,22 @@ function updateData(obj) {
     };
 }
 
-const StatsDisplay = () => {
-    const discipline = selectedGame.selectedGame;
+const StatsDisplay = ({discipline, playerId}) => {
     let getName = discipline==="Valorant"? getValorantName: getCsgoName;
     let getStat = discipline==="Valorant"? getStatValorant: getStatCsgo;
     const { isLoading, data: playerData } = useQuery({
         queryKey: [`${discipline}PlayerStats`],
         queryFn: () => service.getAll(),
         select: ({data}) => {
-            if(discipline==="Valorant") return updateData(data[0].valorantPlayers.find(p=>p.id===+PlayerInfo.id))
-            if(discipline==="CS:GO") return updateData(data[0].csgoPlayers.find(p=>p.id===+PlayerInfo.id))
+            if(discipline==="Valorant") return updateData(data[0].valorantPlayers.find(p=>p.id===+playerId))
+            if(discipline==="CS:GO") return updateData(data[0].csgoPlayers.find(p=>p.id===+playerId))
             return null
         },
     });
 
     return (
         <div className={styles.display}>
-            {isLoading || !Object.keys(playerData).length ? (
+            {isLoading? (
                 <div>Загрузка...</div>
             ) : (
                 <div>

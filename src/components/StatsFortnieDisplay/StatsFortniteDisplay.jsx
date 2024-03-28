@@ -3,16 +3,15 @@ import Separator from '../Separator/Separator';
 import {Link} from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import service from '../../services/main.service.js';
-import PlayerInfo from '../../store/PlayerInfo.js';
 
-function StatsFortniteDisplay() {
-    const { isLoading: isLoadingFortnite, data: playerData, status: _status } = useQuery({
+function StatsFortniteDisplay({playerId}) {
+    const { isLoading: isLoadingFortnite, data: playerData} = useQuery({
         queryKey: ['fortniteEventsStats'],
         queryFn: () => service.getAll(),
-        select: ({data}) => data[0].fortnitePlayers.find(p=>p.id===PlayerInfo.id),
+        select: ({data}) => data[0].fortnitePlayers.find(p=>p.id===+playerId),
     },
     );
-    const { isLoading: isLoadingFortniteEvents, data: events, status } = useQuery({
+    const { isLoading: isLoadingFortniteEvents, data: events } = useQuery({
         queryKey: ['fortnitePlayerStats'],
         queryFn: () => service.getAll(),
         select: ({data}) => data[0].fortniteEvents,
@@ -20,7 +19,7 @@ function StatsFortniteDisplay() {
     );
     return(
 <div className={styles.summary}>
-    {isLoadingFortnite || isLoadingFortniteEvents || events==null || playerData==null? <div>Загрузка...</div>:
+    {isLoadingFortnite || isLoadingFortniteEvents? <div>Загрузка...</div>:
     <>
 <h2>Power Points: {playerData.pr}</h2>
 <Separator />

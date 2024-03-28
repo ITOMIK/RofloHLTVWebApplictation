@@ -3,31 +3,28 @@ import styles from './PlayerHeader.module.css';
 import getCountryFlagUrl from '../../data/getCountryFlag';
 import mainService from '../../services/main.service';
 import { useQuery } from '@tanstack/react-query';
-import PlayerInfo from '../../store/PlayerInfo';
-import selectedGame from '../../store/selectedGame';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-const  PlayerHeader=()=> {
+const  PlayerHeader=({selectedGame, setSelectedGame, playerId})=> {
     const { isLoading, data: user } = useQuery({
         queryKey: ['playerInfo'],
         queryFn: () => mainService.getAll(),
-        select: ({data}) => data[0].players.find(p=>p.id===PlayerInfo.id),
+        select: ({data}) => data[0].players.find(p=>p.id===+playerId),
     },
     );
 
-    const [userLoaded, setUserLoaded] = useState(false);
 
     useEffect(() => {
-        if (user && user.id === PlayerInfo.id && !userLoaded) { 
-            selectedGame.setSelectedGame(user?.games[0]);
-            setUserLoaded(true); 
+        if (user && user.id === +playerId) { 
+            setSelectedGame(user.games[0]);
+            console.log(user);
         }
-    }, [user, userLoaded]);
+    }, [user]);
     
     const avatar = '/defaultAvatar.jpg';
     return(
 <div className={styles.header}>
-    {isLoading || user==null? <div>Загрузка...</div>:
+    {isLoading ? <div>Загрузка...</div>:
     <>  
                 <img src={user.avatar?user.avatar :avatar} alt={user.name} className={styles.avatar} />
                 <div className={styles.info}>
@@ -48,8 +45,8 @@ const  PlayerHeader=()=> {
                     <div className={styles.menu}>
                         <ul>
                             {user.games.map((game, index) => (
-                                <li key={index} className={game === selectedGame.selectedGame ? 'selected' : ''}>
-                                    <button onClick={() => selectedGame.setSelectedGame(game)}>{game} Stats</button>
+                                <li key={index} className={game === selectedGame ? 'selected' : ''}>
+                                    <button onClick={() => setSelectedGame(game)}>{game} Stats</button>
                                 </li>
                             ))}
                         </ul>
