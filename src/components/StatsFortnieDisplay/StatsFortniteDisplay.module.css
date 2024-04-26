@@ -20,6 +20,7 @@
 
   .tournament {
     display: flex;
+    flex-flow: row nowrap;
     background-color: #3F3E3D;
     padding: 10px;
   
