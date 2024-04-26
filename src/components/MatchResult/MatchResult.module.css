@@ -1,16 +1,18 @@
 .result {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  align-items: center;
     margin: 20px;
   }
   
-  .winner img,
-  .looser img {
-    width: 100px;
-    height: auto;
-    margin: 0 10px;
-  }
+  .winner,
+.looser  {
+  width: 10%; /* Пример: уменьшение ширины до 20% */
+  height: auto;
+  margin: 0 10px;
+}
+
   
   .score {
     font-size: 90px;

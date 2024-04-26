@@ -5,13 +5,9 @@ const MatchResult = observer(()=>{
     const event = EventInfo.event;
     return(
         <><div className={styles.result}>
-            <div className={styles.winner}>
-                <img src={event?.itog.winnerLogo} alt={event?.itog.winner} />
-                <span className={styles.score}>{event?.itog.score}</span>
-            </div>
-            <div className={styles.looser}>
-                <img src={event?.itog.looserLogo} alt={event?.itog.looser} />
-            </div>
+                <img src={event?.itog.winnerLogo} alt={event?.itog.winner} className={styles.winner} />  
+            <span className={styles.score}>{event?.itog.score}</span>
+                <img src={event?.itog.looserLogo} alt={event?.itog.looser} className={styles.looser}/>
         </div>
         <div className={styles.maps}>
                 {event?.maps.map((map, index) => (
