@@ -15,3 +15,9 @@
         width: 57%; /* Убираем float на мобильных устройствах */
     }
   }
+
+  @media only screen and (max-width: 760px) {
+    .block {
+        width: 40%; /* Убираем float на мобильных устройствах */
+    }
+  }
