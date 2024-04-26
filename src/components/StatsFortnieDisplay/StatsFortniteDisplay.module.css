@@ -20,10 +20,11 @@
 
   .tournament {
     display: flex;
-    flex-flow: row nowrap;
+  justify-content: center;
+  flex-flow: row nowrap;
+  align-items: center;
     background-color: #3F3E3D;
     padding: 10px;
-  
     margin-bottom: 10px;
     border-radius: 5px;
   }
