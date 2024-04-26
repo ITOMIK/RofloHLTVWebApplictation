@@ -49,3 +49,9 @@
     height: auto;
     margin-right: 5px;
   }
+
+  @media only screen and (max-width: 760px) {
+    .stats h3{
+      font-size: 15px;
+    }
+  }
