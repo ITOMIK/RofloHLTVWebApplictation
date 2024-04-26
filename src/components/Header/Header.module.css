@@ -58,4 +58,7 @@
     .content {
       margin: 3px; /* Убираем float на мобильных устройствах */
   }
+  .links li {
+    margin-right: 5px;
+  }
   }
