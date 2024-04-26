@@ -90,7 +90,12 @@
     margin-bottom: 10px;
   }
 
-
+  @media only screen and (max-width: 760px) {
+    .block {
+      width: 70%;
+      font-size: 10px; /* Убираем float на мобильных устройствах */
+    }
+  }
 
   
 
