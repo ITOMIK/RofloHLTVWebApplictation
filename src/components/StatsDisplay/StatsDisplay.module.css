@@ -44,3 +44,9 @@
     flex-direction: row-reverse;
     margin-right: 10px;
   }
+
+  @media only screen and (max-width: 760px) {
+    .stat{
+      flex: 1 1 calc(100% - 10px);
+    }
+  }
