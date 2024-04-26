@@ -41,3 +41,12 @@
   .content a:hover {
     font-weight: bold;
   }
+
+  @media only screen and (max-width: 1650px) {
+    .logo {
+        margin: 10px; /* Убираем float на мобильных устройствах */
+    }
+    .content {
+      margin: 10px; /* Убираем float на мобильных устройствах */
+  }
+  }

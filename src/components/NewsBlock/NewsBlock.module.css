@@ -9,3 +9,9 @@
     float: left;
     width: 80%;
   }
+
+@media only screen and (max-width: 1650px) {
+    .block {
+        width: 57%; /* Убираем float на мобильных устройствах */
+    }
+  }

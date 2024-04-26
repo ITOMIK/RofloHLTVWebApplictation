@@ -40,7 +40,7 @@ const PlayersStats=observer(({TeamFlag})=>{
                         </div>
                         <p>{discipline==="Csgo"? "raiting: " : "ACS: " }<span style={{ color: getIndicator(discipline==="Csgo"?player.raiting:player.acs) }}>{+(discipline==="Csgo"?player.raiting.toFixed(2):player.acs)}</span></p>
                         {discipline==="Csgo"?<span>K/D/A: {player.kill} / {player.death} / {player.assist} </span>:<span>K/D/A: {player.kills} / {player.deads} / {player.assists} </span>}
-                        <p>ADR: {player.ADR} </p>
+                        <p>ADR: {discipline==="Csgo"? player.ADR: player.adr} </p>
                         <span>First Kills: {player.fk} </span>
                         <span>First Deads: {player.fd}</span>
                         {discipline==="Csgo"?

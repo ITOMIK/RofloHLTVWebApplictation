@@ -10,7 +10,6 @@
     border-radius: 5px;
     margin: 20px;
     width: 80%;
-    min-width: 230px;
 }
 
 .result {
@@ -62,3 +61,5 @@
     height: auto;
   
   }
+
+  
