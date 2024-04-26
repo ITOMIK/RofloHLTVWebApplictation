@@ -28,12 +28,12 @@ const EventsBlock = ({ discipline }) => {
                 <div key={index} style={{marginTop: "20px"}} className={styles.Event}>
                     <Link to={`/Event/${discipline}/${event.id}`}>
                     <div className={styles.EventName}>
-                        <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}}/>
+                        <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}} className={styles.teamLogo}/>
                         <span>{event.itog.winner}</span>
                     </div>
                     <span className={styles.VS}>VS</span>
                     <div className={styles.EventName}>
-                        <img src={event.itog.looserLogo} alt={event.itog.looser} style={{marginRight: "2px"}}/>
+                        <img src={event.itog.looserLogo} alt={event.itog.looser} style={{marginRight: "2px"}} className={styles.teamLogo}/>
                         <span>{event.itog.looser}</span>
                     </div>
 
@@ -47,9 +47,9 @@ const EventsBlock = ({ discipline }) => {
                         ))}
                     </ul>
                     <div  className={styles.result}>
-                        <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}}/>
+                        <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}} className={styles._teamLogo}/>
                         <span className={styles.score}>{event.itog.score}</span>
-                        <img src={event.itog.looserLogo} alt={event.itog.looser} style={{marginRight: "2px"}}/>
+                        <img src={event.itog.looserLogo} alt={event.itog.looser} style={{marginRight: "2px"}} className={styles._teamLogo}/>
                     </div>
                     <Separator />
                     </Link>

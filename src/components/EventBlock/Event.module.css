@@ -15,6 +15,8 @@
 .result {
     display: flex;
     justify-content: center;
+    flex-flow: row nowrap;
+  align-items: center;
   }
   
 .score{
@@ -32,11 +34,7 @@
     margin-top: 3px;
   }
   
-.EventName img{
-    width: 11%;
-    height: auto;
-  }
-  
+
 .VS{
     display: flex;
     justify-content: center;
@@ -56,12 +54,18 @@
     margin-bottom: 5px;
   }
 
-  .Event img{
-    width: 15%;
+
+  .teamLogo{
+    width: 11%;
     height: auto;
-  
+    border-radius: 5px;
   }
 
+  ._teamLogo{
+    width: 15%;
+    height: auto;
+    border-radius: 5px;
+  }
   
   @media only screen and (max-width: 760px) {
     .block {
