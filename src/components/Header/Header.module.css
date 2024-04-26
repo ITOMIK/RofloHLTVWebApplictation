@@ -50,3 +50,12 @@
       margin: 10px; /* Убираем float на мобильных устройствах */
   }
   }
+
+  @media only screen and (max-width: 760px) {
+    .logo {
+        margin: 3px; /* Убираем float на мобильных устройствах */
+    }
+    .content {
+      margin: 3px; /* Убираем float на мобильных устройствах */
+  }
+  }
