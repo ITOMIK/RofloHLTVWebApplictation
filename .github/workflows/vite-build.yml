@@ -20,7 +20,7 @@ jobs:
       run: npm run build
 
     - name: Upload artifact
-      uses: actions/upload-artifact/v3
+      uses: actions/upload-artifact@latest
       with:
         name: vite-build
         path: dist
