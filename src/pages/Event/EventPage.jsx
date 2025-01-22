@@ -43,7 +43,8 @@ const  EventPage=observer(() =>{
                     <MatchResult  />
                     <div className={styles.stat}>
                         <PlayersStats TeamFlag={true} />
-                        <PlayersStats TeamFlag={false} />
+                        {event?.type!="Tournament"?<PlayersStats TeamFlag={false} />:""}
+                        
                     </div>
                 
         </div>

@@ -21,6 +21,8 @@ function updateData(obj) {
     };
 }
 
+//const [selectedSlide, setSelectedSlide] = useState('');
+
 const StatsDisplay = ({discipline, playerId}) => {
     let getName = discipline==="Valorant"? getValorantName: getCsgoName;
     let getStat = discipline==="Valorant"? getStatValorant: getStatCsgo;
@@ -79,3 +81,4 @@ const renderIndicator = (value, thresholds, reverse = false, proc=false) => {
 };
 
 export default StatsDisplay;
+''

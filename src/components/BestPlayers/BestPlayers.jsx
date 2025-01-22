@@ -47,6 +47,8 @@ const { isLoading: isLoadingUsers, data: users } = useQuery({
             <ul>
             {!(isLoadingStats || isLoadingUsers) ? 
                 stats.sort((a, b) => {
+                    if(discipline === "Valorant")
+                        return b.acs - a.acs;
                     return b.raiting - a.raiting;
                 }).map((stat, index) => (
                     <li key={index}>

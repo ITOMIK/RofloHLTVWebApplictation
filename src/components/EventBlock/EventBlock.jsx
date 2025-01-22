@@ -18,6 +18,7 @@ const EventsBlock = ({ discipline }) => {
             return [];
         },
     });
+    
     return (
         
         <div className={styles.block}>
@@ -25,7 +26,7 @@ const EventsBlock = ({ discipline }) => {
             <Separator />
             {isLoading? <div>Загрузка...</div>:
             events.map((event, index) => (
-                <div key={index} style={{marginTop: "20px"}} className={styles.Event}>
+                event?.type=="ShowMatch"? <div key={index} style={{marginTop: "20px"}} className={styles.Event}>
                     <Link to={`/Event/${discipline}/${event.id}`}>
                     <div className={styles.EventName}>
                         <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}} className={styles.teamLogo}/>
@@ -50,6 +51,32 @@ const EventsBlock = ({ discipline }) => {
                         <img src={event.itog.winnerLogo} alt={event.itog.winner} style={{marginRight: "2px"}} className={styles._teamLogo}/>
                         <span className={styles.score}>{event.itog.score}</span>
                         <img src={event.itog.looserLogo} alt={event.itog.looser} style={{marginRight: "2px"}} className={styles._teamLogo}/>
+                    </div>
+                    <Separator />
+                    </Link>
+                </div>
+                :
+                <div key={index} style={{marginTop: "20px"}} className={styles.Event}>
+                    <Link to={`/Event/${discipline}/${event.id}`}>
+                    <div className={styles.EventName}>
+                        <span>{event.name}</span>
+                    </div>
+                    <div className={styles.EventName}>
+                    <img src={event.itog.teamLogo} alt={event.itog.team} style={{marginRight: "2px"}} className={styles.teamLogo}/>
+                    <span>{event.itog.team}</span>
+                    </div>
+
+                    <ul>
+                        {event.maps.map((map, mapIndex) => (
+                            <li key={mapIndex}>
+                                {map.name}: <span style={{ color: map.winner === event.itog.team ? 'green' : 'red' }}>
+                                {map.winner === event.itog.team ? map.score.split("-")[0]: map.score.split("-")[1]}</span> - <span style={{ color: map.winner === event.itog.team ? 'red' : 'green' }}>
+                                {map.looser != event.itog.team ? map.score.split("-")[1]: map.score.split("-")[0]}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <div  className={styles.result}>
+                        <span className={styles.score}>Place #{event.itog.place}</span>
                     </div>
                     <Separator />
                     </Link>

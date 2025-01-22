@@ -28,6 +28,7 @@ const PlayersStats=observer(({TeamFlag})=>{
     if(isLoadingUsers){
         return <div>Загрузка...</div>
     }
+    if(event?.type=="ShowMatch")
     return(
         <div className={styles.stats} style={TeamFlag?null:{justifyItems: "end"}}>
                 {event?.data.filter(x=>x.team===team).map(player => (
@@ -58,6 +59,39 @@ const PlayersStats=observer(({TeamFlag})=>{
                 ))}
             </div>
     );
+    if(event?.type=="Tournament")
+        return(
+            <div className={styles.stats} style={{justifyItems: "center"}}>
+            {event?.data.slice().sort((a, b) => {
+  return -parseFloat(a.acs) + parseFloat(b.acs);
+}).map(player => (
+                <div key={player.id} className={styles.player} style={{minWidth:"70%", marginLeft:"20%" }}>
+                    <Link  to={`/players/${users.find(u=> u.id===player.id).id}`}>
+                    <div className={styles.header}>
+                        <img  src={users.find(u=> u.id===player.id).avatar? users.find(u=> u.id===player.id).avatar: avatar} className={styles.logo} />
+                        <h3>{users.find(u=> u.id===player.id).name}</h3>
+                        <img   className={styles.flag} src={getCountryFlagUrl(users.find(u=> u.id===player.id).country)} style={{marginTop:"15px"}} />
+                    </div>
+                    <p>{discipline==="Csgo"? "raiting: " : "ACS: " }<span style={{ color: getIndicator(discipline==="Csgo"?player.raiting:player.acs) }}>{+(discipline==="Csgo"?player.raiting.toFixed(2):player.acs)}</span></p>
+                    {discipline==="Csgo"?<span>K/D/A: {player.kill} / {player.death} / {player.assist} </span>:<span>K/D/A: {player.kills} / {player.deads} / {player.assists} </span>}
+                    <p>ADR: {discipline==="Csgo"? player.ADR: player.adr} </p>
+                    <span>First Kills: {player.fk} </span>
+                    <span>First Deads: {player.fd}</span>
+                    {discipline==="Csgo"?
+                    <>
+                    <p>Clutches:</p>
+                    <span>
+                            {Object.entries(player.clutches).map(([key, value]) => (
+                                <span key={key}>{key}: {value} </span>
+                            ))}
+                        </span>
+                        </>
+                        :null}
+                    </Link>
+                </div>
+            ))}
+        </div>
+        );
     
 })
 
