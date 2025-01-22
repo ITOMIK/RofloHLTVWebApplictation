@@ -45,7 +45,7 @@ const  PlayerHeader=({selectedGame, setSelectedGame, playerId})=> {
                     <div className={styles.menu}>
                         <ul>
                             {user.games.map((game, index) => (
-                                <li key={index} className={game === selectedGame ? 'selected' : ''}>
+                                <li key={index} className={game === selectedGame ? styles.selected : ''}>
                                     <button onClick={() => setSelectedGame(game)}>{game} Stats</button>
                                 </li>
                             ))}

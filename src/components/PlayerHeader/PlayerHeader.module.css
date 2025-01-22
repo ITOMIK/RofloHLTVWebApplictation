@@ -74,7 +74,10 @@
   
   .menu ul li.selected button {
     font-weight: bold;
+    font-size: large;
   }
+
+
 
   @media only screen and (max-width: 760px) {
     .menu ul li{
