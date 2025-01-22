@@ -40,7 +40,7 @@
   .stat {
     margin-top: 15px;
     min-width: 160px;
-    flex: 1 1 calc(33.33% - 10px); /* 3 статистики на одной строке */
+    flex: 1 1 calc(33.33% - 10px); 
     flex-direction: row-reverse;
     margin-right: 10px;
   }
@@ -48,5 +48,16 @@
   @media only screen and (max-width: 760px) {
     .stat{
       flex: 1 1 calc(100% - 10px);
+      display: flex;
     }
   }
+
+  .statText {
+    margin-right: 10px; 
+    white-space: nowrap; 
+}
+
+.statIndicator {
+    display: flex;
+    align-items: center;
+}

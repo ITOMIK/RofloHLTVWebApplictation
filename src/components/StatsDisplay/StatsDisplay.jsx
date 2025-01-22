@@ -53,9 +53,13 @@ const StatsDisplay = ({discipline, playerId}) => {
                         {Object.keys(playerData)?.map((stat) => (
                             (stat === "id" || stat === "teams" || stat =="name") ? null : (
                                 <div className={styles.stat} key={stat}>
-                                    <span>{getName(stat)} :</span>
-                                    {renderIndicator(stat!="clutches"?playerData[stat]:Object.keys(playerData[stat]).length, {red: getStat(stat)[0], yellow: getStat(stat)[1]}, getStat(stat)[2],getStat(stat)[3])}
+                                        <span className={styles.statText}>{getName(stat)} :</span>
+                                        <div className={styles.statIndicator}>
+                                            {renderIndicator(stat !== "clutches" ? playerData[stat] : Object.keys(playerData[stat]).length, 
+                                                            { red: getStat(stat)[0], yellow: getStat(stat)[1] }, 
+                                                            getStat(stat)[2], getStat(stat)[3])}
                                 </div>
+                    </div>
                             )
                         ))}
                     </div>
