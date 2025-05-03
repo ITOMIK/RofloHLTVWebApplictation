@@ -2,7 +2,7 @@ import { useState } from 'react'
 import HomePage from './pages/Home/HomePage';
 import Footer from './components/Footer/Footer';
 import Header from './components/Header/Header';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter  as Router, Routes, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import PlayerPage from './pages/Player/PlayerPage';
 import CsgoEventPage from './pages/Event/EventPage';
